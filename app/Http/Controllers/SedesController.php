@@ -11,8 +11,8 @@ class SedesController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $sedes = Sede::all();
+        return view('sedes.index', compact('sedes'));    }
 
     /**
      * Show the form for creating a new resource.
