@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
+use App\Models\Organization;
+
 class OrganizationController extends Controller
 {
     /**
@@ -11,8 +14,18 @@ class OrganizationController extends Controller
      */
     public function index()
     {
-        //
+        //        
+        $organizations = Organization::all();
+        return view('organizations.index', compact('organizations'));
+        
     }
+
+
+//     public function index()
+//   {
+//     $posts = Post::all();
+//     return view('posts.index', compact('posts'));
+//   }
 
     /**
      * Show the form for creating a new resource.
@@ -20,6 +33,7 @@ class OrganizationController extends Controller
     public function create()
     {
         //
+        return view('organizations.create');
     }
 
     /**
@@ -27,7 +41,9 @@ class OrganizationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $organization = new Organization($request->All());
+        $organization->save();
+        return redirect()->route('organization.index');
     }
 
     /**
@@ -44,6 +60,10 @@ class OrganizationController extends Controller
     public function edit(string $id)
     {
         //
+        //dd('¿que es el $id que llega?' .$id);
+        $organization = Organization::find($id);
+
+        return view('organizations.edit', compact('organization'));
     }
 
     /**
@@ -52,6 +72,10 @@ class OrganizationController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $organization = Organization::find($id);
+        $organization->fill($request->all());
+        $organization->save();
+        return redirect()->route('organization.index');
     }
 
     /**
@@ -60,5 +84,8 @@ class OrganizationController extends Controller
     public function destroy(string $id)
     {
         //
+        $organization = Organization::find($id);
+        $organization->delete();
+        return redirect()->route('organization.index');
     }
 }

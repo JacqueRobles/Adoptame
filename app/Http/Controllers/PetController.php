@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pet;
+use App\Models\Organization;
 
-class MascotasController extends Controller
+class PetController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,6 +14,8 @@ class MascotasController extends Controller
     public function index()
     {
         //
+        $pets = Pet::all();
+        return view('pets.index', compact('pets'));
     }
 
     /**
@@ -20,6 +24,8 @@ class MascotasController extends Controller
     public function create()
     {
         //
+        $organizations = Organization::all();
+        return view('pets.create', compact('organizations'));
     }
 
     /**
@@ -28,6 +34,10 @@ class MascotasController extends Controller
     public function store(Request $request)
     {
         //
+        $pet = new Pet($request->All());
+        $pet->save();
+        return redirect()->route('pet.index');
+
     }
 
     /**
