@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class SedesController extends Controller
+class InComeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $sedes = Sede::all();
-        return view('sedes.index', compact('sedes'));    }
+        //
+    }
 
     /**
      * Show the form for creating a new resource.

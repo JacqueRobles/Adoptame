@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ColectaController extends Controller
+class HeadquearterController extends Controller
 {
     /**
      * Display a listing of the resource.
