@@ -38,6 +38,15 @@ class PetController extends Controller
         $pet->save();
         return redirect()->route('pet.index');
 
+        $request->validate([
+            'title' => 'required|max:255',
+            'body' => 'required',
+          ]);
+          Post::create($request->all());
+          return redirect()->route('posts.index')
+            ->with('success','Post created successfully.');
+
+
     }
 
     /**

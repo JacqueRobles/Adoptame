@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Adopcion;
+use App\Models\Adoption;
 use App\Events\AdoptionsTableUpdated;
 
 class AdopcionesController extends Controller
@@ -61,8 +61,8 @@ class AdopcionesController extends Controller
      */
     public function destroy(string $id)
     {
-        $adopcion = Adopcion::find($id)->delete();
-        event(new AdoptionsTableUpdated(auth()->user()));
+        $adoption = Adoption::find($id)->delete();
+        //event(new AdoptionsTableUpdated(auth()->user()));
 
 
         return redirect()->route('experiences.index')
