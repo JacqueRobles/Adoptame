@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use app\Models\Organization;
+use app\Models\Image;
+use app\Models\User as Person;
 
 class Pet extends Model
 {
@@ -12,7 +15,6 @@ class Pet extends Model
     protected $fillable = [
         'nickname',
         'type',
-        'profile_photo',
         'biography',
         'feature',
         'adoption',
@@ -22,6 +24,23 @@ class Pet extends Model
     public function organization()
     {
         return $this->belongsTo(Organization::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
+
+
+    public function profilePhoto()
+    {
+        return $this->belongsTo(Image::class, 'profile_photo_id');
+    }
+
+
+    public function adopter()
+    {
+        return $this->belongsTo(Person::class, 'adopter_id');
     }
 
 
