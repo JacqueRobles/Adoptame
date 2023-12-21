@@ -18,7 +18,8 @@ class Pet extends Model
         'biography',
         'feature',
         'adoption',
-        'organization_id'
+        'organization_id',
+        'profile_photo_path'
     ];
 
     public function organization()
