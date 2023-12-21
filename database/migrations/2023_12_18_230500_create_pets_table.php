@@ -17,8 +17,6 @@ class CreatePetsTable extends Migration
             $table->boolean('adoption');
             $table->unsignedBigInteger('organization_id');
             // Add any other columns you need
-            $table->unsignedBigInteger('profile_photo_id')->nullable();
-            $table->unsignedBigInteger('adopter_id')->nullable();
             
 
             // Foreign key constraint
