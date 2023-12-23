@@ -10,6 +10,10 @@ class Image extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'url_image',
+    ];
+
     public function pet()
     {
         return $this->belongsTo(Pet::class);

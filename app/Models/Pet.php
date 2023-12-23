@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use app\Models\Organization;
 use app\Models\Image;
 use app\Models\User as Person;
+use App\Models\Adoption;
 
 class Pet extends Model
 {
@@ -19,7 +20,9 @@ class Pet extends Model
         'feature',
         'adoption',
         'organization_id',
-        'profile_photo_path'
+        'profile_photo_path',
+        'adopter_id',  
+
     ];
 
     public function organization()
@@ -41,7 +44,7 @@ class Pet extends Model
 
     public function adopter()
     {
-        return $this->belongsTo(Person::class, 'adopter_id');
+        return $this->hasOne(Adoption::class);
     }
 
 

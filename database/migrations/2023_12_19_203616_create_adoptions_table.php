@@ -14,6 +14,12 @@ return new class extends Migration
         Schema::create('adoptions', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('pet_id')->constrained()->onDelete('cascade');
+            $table->date('date_adoption');
+            $table->date('prox_control_date');
+            $table->date('retirement_date');
+            
         });
     }
 

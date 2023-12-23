@@ -21,9 +21,6 @@ class Organization extends Model
     }
 
 
-
-
-
     public function pets()
     {
         return $this->hasMany(Pet::class);

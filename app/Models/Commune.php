@@ -13,4 +13,9 @@ class Commune extends Model
     ];
 
 
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+
 }

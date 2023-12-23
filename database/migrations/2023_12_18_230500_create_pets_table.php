@@ -15,12 +15,7 @@ class CreatePetsTable extends Migration
             $table->text('biography');
             $table->text('feature');
             $table->boolean('adoption');
-            $table->unsignedBigInteger('organization_id');
-            // Add any other columns you need
-            
-
-            // Foreign key constraint
-            $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
+            $table->foreignId('organization_id')->constrained()->onDelete('restrict');
 
             $table->timestamps();
         });

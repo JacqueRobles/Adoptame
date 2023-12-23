@@ -9,6 +9,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
+use App\Models\Adoption;
+use App\Models\Pet;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -23,6 +26,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'address',
+        'commune_id',
+        'profile_photo_path',
+        
     ];
 
     /**
@@ -48,7 +56,19 @@ class User extends Authenticatable
     public function adoptedPets()
     {
         return $this->hasMany(Pet::class, 'adopter_id');
+
     }
 
+
+    public function adoptions()
+    {
+        return $this->hasMany(Adoption::class);
+    }
+
+
+    public function commune()
+    {
+        return $this->hasOne(Commune::class, 'commune_id');
+    }
 
 }

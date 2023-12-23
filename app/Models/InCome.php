@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class InCome extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name'
+    ];
+    
 }
