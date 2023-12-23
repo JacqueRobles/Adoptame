@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Pet;
 use App\Models\Organization;
 
+
 class PetController extends Controller
 {
     /**
@@ -33,20 +34,20 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $pet = new Pet($request->All());
-        $pet->save();
-        return redirect()->route('pet.index');
-
         $request->validate([
-            'title' => 'required|max:255',
-            'body' => 'required',
-          ]);
-          Post::create($request->all());
-          return redirect()->route('posts.index')
-            ->with('success','Post created successfully.');
-
-
+            'nickname' => 'required|max:255',
+            'type' => 'required',
+            'biography' => 'required',
+            'feature' => 'required',
+            'organization_id' => 'required',
+            'profile_photo_path' => 'required',
+        ]);
+    
+        $pet = new Pet($request->all());
+        $pet->save();
+    
+        return redirect()->route('pet.index')
+            ->with('success','Pet created successfully.');
     }
 
     /**
@@ -54,7 +55,9 @@ class PetController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $pet = Pet::findOrFail($id);        
+        return view('pets.show', compact('pet'));
+        
     }
 
     /**
