@@ -39,11 +39,18 @@ class PetController extends Controller
             'type' => 'required',
             'biography' => 'required',
             'feature' => 'required',
-            'organization_id' => 'required',
             'profile_photo_path' => 'required',
         ]);
     
-        $pet = new Pet($request->all());
+        $pet = new Pet([
+            'nickname' => $request->input('nickname'),
+            'type' => $request->input('type'),
+            'biography' => $request->input('biography'),
+            'feature' => $request->input('feature'),
+            'profile_photo_path' => $request->input('profile_photo_path'),
+            'organization_id' => auth()->id(),
+        ]);
+        
         $pet->save();
     
         return redirect()->route('pet.index')
@@ -65,22 +72,44 @@ class PetController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $pet = Pet::findOrFail($id);
+        $organizations = Organization::all();
+        return view('pets.edit', compact('pet', 'organizations'));
     }
-
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
-    }
+        $request->validate([
+            'nickname' => 'required|max:255',
+            'type' => 'required',
+            'biography' => 'required',
+            'feature' => 'required',
+            'profile_photo_path' => 'required',
+        ]);
 
+        $pet = Pet::findOrFail($id);
+        $pet->nickname = $request->input('nickname');
+        $pet->type = $request->input('type');
+        $pet->biography = $request->input('biography');
+        $pet->feature = $request->input('feature');
+        $pet->profile_photo_path = $request->input('profile_photo_path');
+
+        $pet->save();
+
+        return redirect()->route('pet.index')
+            ->with('success', 'Pet updated successfully.');
+    }
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $pet = Pet::findOrFail($id);
+        $pet->delete();
+
+        return redirect()->route('pet.index')
+            ->with('success', 'Pet deleted successfully.');
     }
 }

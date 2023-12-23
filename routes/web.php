@@ -28,4 +28,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+Route::put('/adoptions/{id}', 'AdoptionsController@update');   //update
+Route::put('/pets/{id}', 'PetController@update');   //update
+
+
 require __DIR__.'/auth.php';

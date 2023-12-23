@@ -12,6 +12,8 @@ class Adoption extends Model
         'date_adoption',
         'prox_control_date',
         'retirement_date',
+        'pet_id',
+        'user_id',
 
     ];
 
