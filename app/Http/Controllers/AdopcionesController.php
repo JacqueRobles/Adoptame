@@ -14,6 +14,10 @@ class AdopcionesController extends Controller
     public function index()
     {
         //
+        $adoptions = Adoption::latest()->paginate(5);
+
+        return view('adoptions.index', compact('adoptions'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -21,7 +25,11 @@ class AdopcionesController extends Controller
      */
     public function create()
     {
-        //
+        //check auth
+        if (!auth()->user()) {
+            return redirect()->route('login');
+        }
+        return view('adoptions.create');
     }
 
     /**
@@ -30,6 +38,12 @@ class AdopcionesController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'name' => 'required',
+            'age' => 'required',
+            'breed' => 'required',
+            'description' => 'required',
+        ]);
     }
 
     /**
