@@ -30,12 +30,6 @@ class Pet extends Model
         return $this->belongsTo(Organization::class);
     }
 
-    public function images()
-    {
-        return $this->hasMany(Image::class);
-    }
-
-
     public function profilePhoto()
     {
         return $this->belongsTo(Image::class, 'profile_photo_id');
@@ -45,6 +39,11 @@ class Pet extends Model
     public function adopter()
     {
         return $this->hasOne(Adoption::class);
+    }
+
+    public function image()
+    {
+        return $this->morphMany(Image::class, 'imageable');
     }
 
 

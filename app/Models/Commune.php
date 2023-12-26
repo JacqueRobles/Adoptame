@@ -9,7 +9,7 @@ class Commune extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name'
+        'commune_name',
     ];
 
 

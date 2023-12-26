@@ -26,5 +26,9 @@ class Organization extends Model
         return $this->hasMany(Pet::class);
     }
 
+    public function image()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
 
 }

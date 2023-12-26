@@ -19,4 +19,9 @@ class Image extends Model
         return $this->belongsTo(Pet::class);
     }
 
+    public function imageable()
+    {
+        return $this->morphTo();
+    }
+
 }

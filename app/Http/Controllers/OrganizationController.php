@@ -37,13 +37,16 @@ class OrganizationController extends Controller
         return view('organizations.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $organization = new Organization($request->All());
+        $request->validate([
+            'name' => 'required|max:255',
+            // Add other fields here...
+        ]);
+    
+        $organization = new Organization($request->all());
         $organization->save();
+    
         return redirect()->route('organization.index');
     }
 

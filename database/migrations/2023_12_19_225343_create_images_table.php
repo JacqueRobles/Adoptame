@@ -10,9 +10,10 @@ class CreateImagesTable extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('pet_id');
-            $table->foreign('pet_id')->references('id')->on('pets')->onDelete('cascade');
+            $table->foreignId('pet_id')->onDelete('cascade');
             $table->string('path');
+            $table->unsignedBigInteger('imageable_id');
+            $table->string('imageable_type');
             $table->timestamps();
         });
     }

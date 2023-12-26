@@ -2,6 +2,13 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdoptionsController;
+use App\Http\Controllers\PetController;
+use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\CommuneController;
+use App\Http\Controllers\HeadquarterController;
+use App\Http\Controllers\HomeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +36,13 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::put('/adoptions/{id}', 'AdoptionsController@update');   //update
-Route::put('/pets/{id}', 'PetController@update');   //update
+Route::middleware(['auth', 'role:organization'])->group(function () {
+    Route::patch('/adoptions/{id}', 'AdoptionsController@update')->name('adoption.update');   //update
+    Route::put('/pets/{id}', [PetController::class, 'update'])->name('pet.update');   //update
+});
 
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::post('/organizations', 'OrganizationController@store');   //store
+});
 
 require __DIR__.'/auth.php';
