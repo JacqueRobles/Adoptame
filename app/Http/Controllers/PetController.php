@@ -5,10 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pet;
 use App\Models\Organization;
+use Spatie\Permission\Middlewares\RoleMiddleware;
 
 
 class PetController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:organization')->only(['create', 'store', 'edit', 'update']);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -25,8 +30,8 @@ class PetController extends Controller
     public function create()
     {
         //
-        $organizations = Organization::all();
-        return view('pets.create', compact('organizations'));
+        $pets = Pet::all();
+        return view('pets.create', compact('pets'));
     }
 
     /**

@@ -52,7 +52,8 @@ class OrganizationController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $organization = Organization::find($id);
+        return view('organizations.show', compact('organization'));
     }
 
     /**
@@ -80,22 +81,22 @@ class OrganizationController extends Controller
     }
 
     // Example controller method
-public function updateProfilePhoto(Request $request, Organization $organization, Pet $pet)
-{
-    // Validate and store the new profile photo
-    $request->validate([
-        'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-    ]);
+    public function updateProfilePhoto(Request $request, Organization $organization, Pet $pet)
+    {
+        // Validate and store the new profile photo
+        $request->validate([
+            'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-    $profilePhotoPath = $request->file('profile_photo')->store('profile_photos', 'public');
+        $profilePhotoPath = $request->file('profile_photo')->store('profile_photos', 'public');
 
-    // Update the pet's profile photo path
-    $pet->update(['profile_photo_path' => $profilePhotoPath]);
+        // Update the pet's profile photo path
+        $pet->update(['profile_photo_path' => $profilePhotoPath]);
 
-    // Additional logic as needed
+        // Additional logic as needed
 
-    return redirect()->back()->with('success', 'Profile photo updated successfully');
-}
+        return redirect()->back()->with('success', 'Profile photo updated successfully');
+    }
 
 
 
