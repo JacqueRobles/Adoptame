@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Models\Pet;
+use App\Policies\PetPolicy;
+use App\Models\Adoption;
+use App\Policies\AdoptionPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -13,7 +17,9 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        //
+        Pet::class => PetPolicy::class,
+        Adoption::class => AdoptionPolicy::class,
+
     ];
 
     /**
@@ -21,6 +27,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->registerPolicies();
     }
 }

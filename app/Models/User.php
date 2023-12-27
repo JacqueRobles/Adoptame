@@ -59,21 +59,35 @@ class User extends Authenticatable
 
     }
 
-
     public function adoptions()
     {
         return $this->hasMany(Adoption::class);
     }
 
-
     public function commune()
     {
-        return $this->hasOne(Commune::class, 'commune_id');
+        return $this->belongsTo(Commune::class);
     }
 
-    public function userable()
+
+    public function pets()
     {
-        return $this->morphTo();
+        return $this->hasMany(Pet::class);
+    }
+
+    public function image()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function headquarter()
+    {
+        return $this->hasMany(Headquarter::class);
+    }
+    
+    public function income()
+    {
+        return $this->hasMany(Income::class);
     }
 
 

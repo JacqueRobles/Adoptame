@@ -1,0 +1,22 @@
+<?php
+namespace App\Policies;
+
+use App\Models\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
+
+class AdoptionPolicy
+{
+    use HandlesAuthorization;
+
+    public function create(User $user)
+    {
+        // Only allow users with the 'User' role to create adoptions
+        return $user->hasRole('User');
+    }
+
+    public function update(User $user)
+    {
+        // Only allow users with the 'Organization' role to update adoptions
+        return $user->hasRole('Organization');
+    }
+}

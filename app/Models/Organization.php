@@ -35,9 +35,14 @@ class Organization extends Model
         return $this->morphMany(Image::class, 'imageable');
     }
 
-    public function user()
+    public function headquarter()
     {
-        return $this->morphOne(User::class, 'userable');
+        return $this->hasMany(Headquarter::class);
+    }
+    
+    public function income()
+    {
+        return $this->hasMany(Income::class);
     }
 
 }

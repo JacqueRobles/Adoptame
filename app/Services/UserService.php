@@ -10,26 +10,22 @@ class UserService
 {
     public function createUser(array $attributes, string $userType)
     {
+        // Extract the user attributes
+        $userAttributes = [
+            'email' => $attributes['email'],
+            'password' => $attributes['password'],
+        ];
+        // Remove the user attributes from the original attributes array
+        unset($attributes['email'], $attributes['password']);
+
         // Determine the type of user being created
-        switch ($userType) {
-            case 'organization':
-                $userable = Organization::create($attributes);
-                break;
-            case 'admin':
-                $userable = Admin::create($attributes);
-                break;
-            default:
-                // Handle invalid user type
-                
-                break;
-        }
+        $userable = Organization::create($attributes);
 
         // Create the User
-        $user = User::create([
+        $user = User::create(array_merge($userAttributes, [
             'userable_id' => $userable->id,
             'userable_type' => get_class($userable),
-            // Add other user attributes here
-        ]);
+        ]));
 
         // Assign the role to the user
         $role = Role::where('name', $userType)->first();
@@ -39,5 +35,4 @@ class UserService
 
         return $user;
     }
-
 }

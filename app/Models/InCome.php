@@ -20,4 +20,8 @@ class InCome extends Model
         'progress_ammount',
     ];
     
+    public function organization()
+    {
+        return $this->belongsTo(Organization::class, 'organization_id');
+    }
 }

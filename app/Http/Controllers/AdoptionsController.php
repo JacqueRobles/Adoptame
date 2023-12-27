@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Adoption;
+use App\Models\Pet;
 use App\Events\AdoptionsTableUpdated;
 
 class AdopcionesController extends Controller
@@ -29,6 +30,7 @@ class AdopcionesController extends Controller
         if (!auth()->user()) {
             return redirect()->route('login');
         }
+        $this->authorize('create', Pet::class);
         return view('adoptions.create');
     }
 
@@ -84,6 +86,7 @@ class AdopcionesController extends Controller
                 ->with('error', 'Adoption not found');
         }
 
+        $this->authorize('update', $adoption);
         return view('adoptions.edit', compact('adoption'));
     }
     /**
