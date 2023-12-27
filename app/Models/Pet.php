@@ -20,7 +20,7 @@ class Pet extends Model
         'feature',
         'adoption',
         'organization_id',
-        'profile_photo_path',
+        'profile_photo_id',
         'adopter_id',  
 
     ];
