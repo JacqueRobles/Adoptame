@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('headquarters', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('name');
+            $table->foreignId('organization_id')->constrained('users');
+            $table->string('address');
+            $table->integer('phone');
         });
     }
 

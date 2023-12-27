@@ -14,6 +14,15 @@ return new class extends Migration
         Schema::create('income', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('name');
+            $table->longText('description');
+            $table->integer('amount');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->string('status');
+            $table->foreignId('organization_id')->constrained('users');
+            $table->integer('progress_ammount');
+
         });
     }
 

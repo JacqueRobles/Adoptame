@@ -17,4 +17,8 @@ class Headquarter extends Model
 
     ];
     
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'organization_id');
+    }
 }

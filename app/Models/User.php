@@ -30,6 +30,7 @@ class User extends Authenticatable
         'address',
         'commune_id',
         'profile_photo_path',
+        'web',
         
     ];
 

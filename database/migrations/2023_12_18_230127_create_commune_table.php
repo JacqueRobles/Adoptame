@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('commune', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('commune_name');
+            $table->foreignId('organization_id')->constrained('organizations');
         });
     }
 

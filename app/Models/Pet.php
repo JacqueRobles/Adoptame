@@ -27,7 +27,7 @@ class Pet extends Model
 
     public function organization()
     {
-        return $this->belongsTo(Organization::class, 'organization_id');
+        return $this->belongsTo(User::class, 'organization_id');
     }
 
     public function profilePhoto()
