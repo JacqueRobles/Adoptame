@@ -10,6 +10,7 @@ class Commune extends Model
     use HasFactory;
     protected $fillable = [
         'commune_name',
+        'organization_id',
     ];
 
 

@@ -12,6 +12,8 @@ class Headquarter extends Model
     protected $fillable = [
         'name',
         'address',
+        'phone',
+        'organization_id',
 
     ];
     

@@ -10,7 +10,14 @@ class InCome extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
+        'description',
+        'amount',
+        'start_date',
+        'end_date',
+        'status',
+        'organization_id',
+        'progress_ammount',
     ];
     
 }

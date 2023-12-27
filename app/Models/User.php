@@ -71,4 +71,10 @@ class User extends Authenticatable
         return $this->hasOne(Commune::class, 'commune_id');
     }
 
+    public function userable()
+    {
+        return $this->morphTo();
+    }
+
+
 }

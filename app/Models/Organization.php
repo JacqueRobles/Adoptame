@@ -12,6 +12,10 @@ class Organization extends Model
     protected $fillable = [
         'name',
         'address',
+        'phone',
+        'email',
+        'web',
+        'profile_photo_path',
     ];
 
 
@@ -29,6 +33,11 @@ class Organization extends Model
     public function image()
     {
         return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function user()
+    {
+        return $this->morphOne(User::class, 'userable');
     }
 
 }
