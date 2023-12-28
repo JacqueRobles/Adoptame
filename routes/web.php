@@ -8,7 +8,7 @@ use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\CommuneController;
 use App\Http\Controllers\HeadquarterController;
 use App\Http\Controllers\HomeController;
-
+use App\Models\Pet;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +22,8 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', function () {
-    return view('index');
+    $pets = Pet::where('adopter', false)->take(5); // Change 5 to the number of pets you want to display
+    return view('index', ['pets' => $pets]);
 });
 
 Route::get('/dashboard', function () {

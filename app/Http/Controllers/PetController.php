@@ -21,7 +21,7 @@ class PetController extends Controller
     {
         //
         $pets = Pet::all();
-        return view('pets.index', compact('pets'));
+        return view('pets.index', ['pets' => $pets]);   //compact('pets'));
     }
 
     /**
@@ -29,9 +29,7 @@ class PetController extends Controller
      */
     public function create()
     {
-        //
-        $pets = Pet::all();
-        return view('pets.create', compact('pets'));
+        return view('pets.create');
     }
 
     /**
@@ -71,7 +69,6 @@ class PetController extends Controller
         return view('pets.show', compact('pet'));
         
     }
-
     /**
      * Show the form for editing the specified resource.
      */

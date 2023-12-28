@@ -16,23 +16,20 @@
       <h1 class="text-2xl text-slate-700 dark:text-white sm:text-4xl">
            Find your perfect furry friend and give them a forever home.
       </h1>
-      <h2 class="mt-1 sm:mt-3 text-4xl font-bold text-black dark:text-white sm:text-6xl">  
+      <h2 class=" mt-1 sm:mt-3  text-4xl font-bold text-black dark:text-white sm:text-6xl">  
          <span class="bg-clip-text bg-gradient-to-tr from-teal-950 to-teal-600 dark:from-blue-600 dark:to-purple-400  text-transparent">  
             Welcome to the Pet Adoptions Page! 
         </span>
       </h2>
     </div>
-    <div class=" mt-24 space-y-9">
+    <div class=" mt-24 space-y-9 pt-32">
+        
+        {{-- @section('carrusel-content')
+            @foreach($pets as $pet)
+                @include('components.card', ['pet' => $pet])
+            @endforeach
+        @endsection --}}
         @include('components.carrusel')
-        @section('carrusel-content-1')
-            @include('components.card')
-        @endsection
-        @section('carrusel-content-2')
-            @include('components.card')
-        @endsection
-        @section('carrusel-content-3')
-            @include('components.card')
-        @endsection
 
         <div class="mt-8 space-y-4">
           <!-- Clients -->

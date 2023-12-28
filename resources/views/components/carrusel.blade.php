@@ -1,7 +1,7 @@
 <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com --> 
 <div
   id="carouselExampleIndicators"
-  class="relative"
+  class="relative flex overflow-x-auto"
   data-te-carousel-init
   data-te-ride="carousel">
   <!--Carousel indicators-->
@@ -32,20 +32,25 @@
 
   <!--Carousel items-->
   <div
-    class="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
+    class="relative w-full overflow-hidden after:clear-both after:block after:content-[''] flex space-x-4 p-4">
+    @foreach($pets as $pet)
+        
+    
     <!--First item-->
+
     <div
       class="relative float-left -mr-[100%] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
       data-te-carousel-item
-      data-te-carousel-active>
-      {{-- <img
+      data-te-carousel-active> 
+       {{-- <img
         src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp"
         class="block w-full"
-        alt="Wild Landscape" /> --}}
+        alt="Wild Landscape" />  --}}
         <div class="block w-full">
-           @yield('carrusel-content-1') 
+            @include('components.card', ['pet' => $pet])
         </div>
     </div>
+    @endforeach
     <!--Second item-->
     <div
       class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
