@@ -7,6 +7,10 @@ use App\Models\Income;
 
 class InComeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:organization')->only(['create', 'store', 'edit', 'update']);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -28,9 +32,15 @@ class InComeController extends Controller
     public function store(Request $request)
     {
         $income = new Income();
-        $income->property1 = $request->input('property1');
-        $income->property2 = $request->input('property2');
-        // Set other properties as needed
+        $income->name = $request->input('name');
+        $income->description = $request->input('description');
+        $income->ammount = $request->input('ammount');
+        $income->start_date = $request->input('start_date');
+        $income->end_date = $request->input('end_date');
+        $income->status = $request->input('status');
+        $income->organization_id->auth()->id();
+        $income->progress_ammount = $request->input('progress_ammount');
+        // Set other properties
 
         $income->save();
 

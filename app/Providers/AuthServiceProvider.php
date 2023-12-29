@@ -5,9 +5,9 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use App\Models\Pet;
-use App\Policies\PetPolicy;
 use App\Models\Adoption;
 use App\Policies\AdoptionPolicy;
+use App\Policies\PetPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {

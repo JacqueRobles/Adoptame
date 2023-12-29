@@ -10,13 +10,15 @@ class AdoptionPolicy
 
     public function create(User $user)
     {
-        // Only allow users with the 'User' role to create adoptions
-        return $user->hasRole('User');
+        return $user->hasRole('admin') || $user->roles->isEmpty();
     }
+
 
     public function update(User $user)
     {
         // Only allow users with the 'Organization' role to update adoptions
-        return $user->hasRole('Organization');
+        return $user->hasRole('Organization') ||$user->hasRole('admin') ;
     }
+
+
 }

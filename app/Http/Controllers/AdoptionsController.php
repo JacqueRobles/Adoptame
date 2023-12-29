@@ -9,6 +9,12 @@ use App\Events\AdoptionsTableUpdated;
 
 class AdopcionesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:create,App\\Models\\Adoption')->only(['create', 'store']);
+        $this->middleware('can:update,App\\Models\\Adoption')->only(['edit', 'update']);
+
+    }
     /**
      * Display a listing of the resource.
      */
@@ -47,7 +53,7 @@ class AdopcionesController extends Controller
         ]);
 
         $adoption = new Adoption([
-            'date_adoption' => $request->input('date_adoption'),
+            'date_adoption' => today(),
             'prox_control_date' => $request->input('prox_control_date'),
             'retirement_date' => $request->input('retirement_date'),
             'pet_id' => $request->input('pet_id'),

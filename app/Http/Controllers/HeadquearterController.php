@@ -7,6 +7,10 @@ use App\Models\Headquarter;
 
 class HeadquearterController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['role:organization', 'role:admin'])->only(['create', 'store', 'edit', 'update']);
+    }
     /**
      * Display a listing of the resource.
      */
