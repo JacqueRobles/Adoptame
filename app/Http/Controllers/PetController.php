@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pet;
 use App\Models\Organization;
+use App\Models\User;
 use Spatie\Permission\Middlewares\RoleMiddleware;
 
 
@@ -75,7 +76,7 @@ class PetController extends Controller
     public function edit(string $id)
     {
         $pet = Pet::findOrFail($id);
-        $organizations = Organization::all();
+        $organizations = User::all();
         return view('pets.edit', compact('pet', 'organizations'));
     }
     /**

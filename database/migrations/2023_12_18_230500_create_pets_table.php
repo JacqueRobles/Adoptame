@@ -15,8 +15,8 @@ class CreatePetsTable extends Migration
             $table->text('biography');
             $table->text('feature');
             $table->boolean('adoption')->default(false);
-            $table->foreignId('organization_id')->constrained()->onDelete('restrict');
-            $table->foreignId('adopter_id')->nullable()->constrained()->onDelete('restrict');
+            $table->foreignId('organization_id')->constrained('users')->onDelete('restrict');
+            $table->foreignId('adopter_id')->nullable()->constrained('users')->onDelete('restrict');
             $table->foreignId('profile_photo_id')->nullable()->constrained('images')->onDelete('cascade');
             $table->timestamps();
         });

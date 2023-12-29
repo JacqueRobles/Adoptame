@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('end_date');
             $table->string('status');
             $table->foreignId('organization_id')->constrained('users');
-            $table->integer('progress_ammount');
+            $table->integer('progress_ammount')->default('0');
 
         });
     }

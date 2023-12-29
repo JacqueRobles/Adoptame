@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('commune_name');
-            $table->foreignId('organization_id')->constrained('organizations');
+            $table->foreignId('organization_id')->constrained('users');
         });
     }
 

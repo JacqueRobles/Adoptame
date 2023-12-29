@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->foreignId('organization_id')->constrained('users');
             $table->string('address');
-            $table->integer('phone');
+            $table->integer('phone')->nullable();
         });
     }
 
