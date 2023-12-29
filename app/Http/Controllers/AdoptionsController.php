@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Adoption;
 use App\Models\Pet;
 use App\Events\AdoptionsTableUpdated;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Traits\HasRoles;
 
 class AdopcionesController extends Controller
 {
+    use HasRoles;
     public function __construct()
     {
         $this->middleware('can:create,App\\Models\\Adoption')->only(['create', 'store']);
@@ -19,13 +23,23 @@ class AdopcionesController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
+{
+    $userId = auth()->id(); // get the currently authenticated user's ID
+    $user = auth()->user();
+    if ($user->roles->isEmpty()) {
+        // If the user is an adopter, get adoptions where the adopter_id is the user's ID
+        $adoptions = Adoption::where('adopter_id', $userId)->latest()->paginate(5);
+    } elseif (auth()->user()->hasRole('organization')) {
+        // If the user is an organization, get adoptions where the organization_id is the user's ID
+        $adoptions = Adoption::where('organization_id', $userId)->latest()->paginate(5);
+    } else {
+        // If the user has another role, get all adoptions
         $adoptions = Adoption::latest()->paginate(5);
-
-        return view('adoptions.index', compact('adoptions'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
+
+    return view('adoptions.index', compact('adoptions'))
+        ->with('i', (request()->input('page', 1) - 1) * 5);
+}
 
     /**
      * Show the form for creating a new resource.
