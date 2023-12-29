@@ -11,7 +11,7 @@ class PetPolicy
     public function create(User $user)
     {
         // Only allow users with the 'Organization' role to create pets
-        return $user->hasRole('Organization');
+        return $user->hasRole('organization');
     }
 
     public function update(User $user)
