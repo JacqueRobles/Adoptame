@@ -37,14 +37,15 @@
             <div id="navbar-collapse-with-animation" class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block">
                 <!-- Left Side Of Navbar -->
                 <div class="flex flex-col w-full sm:justify-between gap-y-4 gap-x-0 sm:flex-row sm:items-center sm:gap-y-0 sm:gap-x-7 sm:ps-7">
-                    @auth
                     <div class="flex gap-5">
-                        <a class="font-medium text-blue-600 sm:py-6 dark:text-blue-500" href="/admin" aria-current="page">Dashboard</a>
-                        <a class="font-medium text-gray-500 hover:text-gray-400 sm:py-6 dark:text-gray-400 dark:hover:text-gray-500" href="/admin/news">News</a>
-                        <a class="font-medium text-gray-500 hover:text-gray-400 sm:py-6 dark:text-gray-400 dark:hover:text-gray-500" href="/animals">Animals</a>
-                        <a class="font-medium text-gray-500 hover:text-gray-400 sm:py-6 dark:text-gray-400 dark:hover:text-gray-500" href="/admin/contacts">Contacts</a>
+                        <a class="font-medium text-blue-600 sm:py-6 dark:text-blue-500" href="{{ route('pets.index') }}" aria-current="page">Mascotas</a>
+                        @auth
+                        {{-- <a class="font-medium text-gray-500 hover:text-gray-400 sm:py-6 dark:text-gray-400 dark:hover:text-gray-500" href="/admin/news">News</a>
+                        <a class="font-medium text-gray-500 hover:text-gray-400 sm:py-6 dark:text-gray-400 dark:hover:text-gray-500" href="/animals">Animals</a> --}}
+                        <a class="font-medium text-gray-500 hover:text-gray-400 sm:py-6 dark:text-gray-400 dark:hover:text-gray-500" href="{{ route('organization.index') }}">Organizaciones</a>
+                    
+                        @endauth
                     </div>
-                    @endauth
                     @guest
                     <ul class="flex flex-col gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:ps-7 w-full">
                         <!-- Authentication Links -->

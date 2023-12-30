@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Organization;
 use app\Models\Pet;
+use App\Models\User;
 
 class OrganizationController extends Controller
 {
@@ -15,10 +16,9 @@ class OrganizationController extends Controller
      */
     public function index()
     {
-        //        
-        $organizations = Organization::all();
-        return view('organizations.index', compact('organizations'));
-        
+        $users = User::role('organization')->get();
+    
+        return view('organizations.index', compact('users'));
     }
 
 
@@ -44,10 +44,10 @@ class OrganizationController extends Controller
             // Add other fields here...
         ]);
     
-        $organization = new Organization($request->all());
+        $organization = new User($request->all());
         $organization->save();
     
-        return redirect()->route('organization.index');
+        return redirect()->route('organizations.index');
     }
 
     /**
@@ -55,7 +55,7 @@ class OrganizationController extends Controller
      */
     public function show(string $id)
     {
-        $organization = Organization::find($id);
+        $organization = User::find($id);
         return view('organizations.show', compact('organization'));
     }
 
@@ -66,7 +66,7 @@ class OrganizationController extends Controller
     {
         //
         //dd('¿que es el $id que llega?' .$id);
-        $organization = Organization::find($id);
+        $organization = User::find($id);
 
         return view('organizations.edit', compact('organization'));
     }
@@ -77,14 +77,14 @@ class OrganizationController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $organization = Organization::find($id);
+        $organization = User::find($id);
         $organization->fill($request->all());
         $organization->save();
         return redirect()->route('organization.index');
     }
 
     // Example controller method
-    public function updateProfilePhoto(Request $request, Organization $organization, Pet $pet)
+    public function updateProfilePhoto(Request $request, User $organization, Pet $pet)
     {
         // Validate and store the new profile photo
         $request->validate([

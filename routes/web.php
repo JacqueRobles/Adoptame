@@ -3,12 +3,14 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdoptionsController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\CommuneController;
 use App\Http\Controllers\HeadquarterController;
 use App\Http\Controllers\HomeController;
 use App\Models\Pet;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,10 +29,16 @@ Route::get('/', function () {
 });
 
 Route::controller(PetController::class)->group(function() {
-Route::get('/animals', 'index');
-Route::get('/pets/{id}', 'show');
-Route::post('/pets/{id}/update', 'update');
-Route::get('/pets/{id}/update', 'edit');
+    Route::get('/pets', 'index')->name('pet.index');
+    Route::get('/pets/{id}', 'show')->name('pet.show');
+    Route::middleware('auth')->group(function() {
+        Route::get('/pets/create', 'create')->name('pet.create');             //organization
+        Route::post('/pets/store', 'store')->name('pet.store');        //organization
+        Route::post('/pets/{id}/update', 'update')->name('pet.update');        //organization
+        Route::get('/pets/{id}/update', 'edit')->name('pet.edit');             //organization
+        Route::get('/pets/{id}/destroy', 'destroy')->name('pet.destroy');      //admin
+
+    });
 });
 
 Route::get('/dashboard', function () {
@@ -44,15 +52,22 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::middleware(['auth', 'role:organization'])->group(function () {
-    Route::patch('/adoptions/{id}', 'AdoptionsController@update')->name('adoption.update');   //update
-    Route::put('/pets/{id}', [PetController::class, 'update'])->name('pet.update');   //update
-    Route::get('/pets/create', [PetController::class, 'create'])->name('pet.create');
-});
-
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/organizations', 'OrganizationController@store')->name('pet.update');   //store
 });
+Route::controller(OrganizationController::class)->group(function() {
+    Route::get('/organizations', 'index')->name('organization.index');     //user role organization
+    Route::get('/organizations/new', 'create')->name('organization.create');     //user role organization
+    Route::get('/organizations/{id}/update', 'edit')->name('organization.edit');     //user role organization
+    Route::get('/organizations/{id}/update', 'update')->name('organization.update');     //user role organization
+    Route::get('/organizations/{id}/destroy', 'destroy')->name('organization.destroy');     //user role organization
 
+});
+
+// Route::middleware(['auth', 'role:organization'])->group(function () {
+//     Route::patch('/adoptions/{id}', 'AdoptionsController@update')->name('adoption.update');   //update
+//     Route::put('/pets/{id}', [PetController::class, 'update'])->name('pet.update');   //update
+//     Route::get('/pets/create', [PetController::class, 'create'])->name('pet.create');
+// });
 
 require __DIR__.'/auth.php';
