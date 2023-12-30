@@ -30,7 +30,8 @@ class PetController extends Controller
      */
     public function create()
     {
-        return view('pets.create');
+        $organizations = User::role('organization')->get();
+        return view('pets.create', compact('organizations'));
     }
 
     /**
@@ -66,8 +67,9 @@ class PetController extends Controller
      */
     public function show(string $id)
     {
-        $pet = new Pet();
-        $pet->nickname = "canito";
+        // $pet = new Pet();
+        // $pet->nickname = "canito";
+        $pet = Pet::findOrFail($id);
         return view('pets.show', compact('pet'));
         
     }
