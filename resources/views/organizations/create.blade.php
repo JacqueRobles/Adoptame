@@ -1,8 +1,8 @@
-//TEMPORAL
+{{-- TEMPORAL --}}
 @extends('layouts.app')
 
 @section('content')
-
+<section class= "text-white">
     <h1>Ingresar Nombre de la Organización Que será parte de Adoptame.cl</h1>
 
     <form action="{{ route('organization.store') }}" method="POST">
@@ -15,4 +15,6 @@
         <button type="submit" class="btn btn-outline-primary">Guardar</button>
         <a class="btn btn-outline-secondary" href="{{ route('organization.index') }}">Cancelar</a>
     </form>
+
+</section>  
 @endsection

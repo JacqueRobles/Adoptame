@@ -58,8 +58,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::controller(OrganizationController::class)->group(function() {
     Route::get('/organizations', 'index')->name('organization.index');     //user role organization
     Route::get('/organizations/new', 'create')->name('organization.create');     //user role organization
+    Route::post('/organizarions/new', 'store')->name('organization.store');        //organization
     Route::get('/organizations/{id}/update', 'edit')->name('organization.edit');     //user role organization
-    Route::get('/organizations/{id}/update', 'update')->name('organization.update');     //user role organization
+    Route::post('/organizations/{id}/update', 'update')->name('organization.update');     //user role organization
     Route::get('/organizations/{id}/destroy', 'destroy')->name('organization.destroy');     //user role organization
 
 });
