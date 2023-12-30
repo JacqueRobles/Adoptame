@@ -1,14 +1,6 @@
-<html>
-<header>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+@extends('layouts.app')
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-    </script>
-</header>
-
-<body>
+@section('content')
 
     <h6> Ingresar datos de mascota</h6>
     <form method="POST" action="{{ route('pet.store') }}">
@@ -40,6 +32,4 @@
         <button type="submit" class="btn btn-primary">Guardar Mascota</button>
     </form>
 
-</body>
-
-</html>
+@endsection

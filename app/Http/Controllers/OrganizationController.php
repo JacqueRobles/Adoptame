@@ -16,9 +16,9 @@ class OrganizationController extends Controller
      */
     public function index()
     {
-        $users = User::role('organization')->get();
+        $organizations = User::role('organization')->get();
     
-        return view('organizations.index', compact('users'));
+        return view('organizations.index', compact('organizations'));
     }
 
 
