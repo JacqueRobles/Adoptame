@@ -13,14 +13,14 @@
         <path d="M5 33V20.16C5 15.6534 8.58172 12 13 12C17.4183 12 21 15.6534 21 20.16C21 24.6666 17.4183 28.32 13 28.32H12" stroke="white" stroke-width="2"/> --}}
         {{-- <circle cx="13" cy="20.0215" r="5" fill="white"/> --}}
       </svg>
-      <h1 class="text-2xl text-slate-700 dark:text-white sm:text-4xl">
+      <h2 class="text-2xl text-slate-700 dark:text-white sm:text-4xl">
            Find your perfect furry friend and give them a forever home.
-      </h1>
-      <h2 class=" mt-1 sm:mt-3  text-4xl font-bold text-black dark:text-white sm:text-6xl">  
+      </h2>
+      <h1 class="mt-1 sm:mt-3 text-4xl font-bold text-black dark:text-white sm:text-6xl">  
          <span class="bg-clip-text bg-gradient-to-tr from-teal-950 to-teal-600 dark:from-blue-600 dark:to-purple-400  text-transparent">  
             Welcome to the Pet Adoptions Page! 
         </span>
-      </h2>
+      </h1>
     </div>
     <div class=" mt-24 space-y-9 pt-32">
         
@@ -43,7 +43,7 @@
                 <!-- End Title -->
             
                 <!-- Grid -->
-                <div class="grid grid-cols-2 sm:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 lg:gap-6">
+                <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-3 lg:gap-6">
                 <div class="p-4 md:p-7 bg-gray-100 rounded-lg dark:bg-slate-800">
                     <img class="py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto text-gray-800 dark:text-gray-200" enable-background="new 0 0 2499 614" viewBox="0 0 2499 614" src="https://fundacionjulieta.cl/wp-content/uploads/2022/10/Logo-Final-Julieta.png"> </img>
                 </div>

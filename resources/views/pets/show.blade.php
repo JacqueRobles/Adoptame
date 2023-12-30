@@ -1,21 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <div class="card">
-                    <div class="card-header">
-                        <h2>{{ $pet->name }}</h2>
-                    </div>
-                    <div class="card-body">
-                        <p>{{ $pet->description }}</p>
-                        <p>Age: {{ $pet->age }}</p>
-                        <p>Species: {{ $pet->species }}</p>
-                        <p>Breed: {{ $pet->breed }}</p>
-                    </div>
-                </div>
+<section class="flex justify-center items-center text-black pt-5">
+    <div class="w-5/6 bg-white h-screen">
+        <div class="flex h-1/2">
+            <div class="w-1/3 bg-green-300 m-5">hello</div>
+            <div class="w-2/3 bg-purple-300 m-5">
+                <form action="/pets/2/update" method="POST">
+                    <input type="text" name="nickname" value="{{$pet->nickname}}"/>
+                </form>
+                </form>
+            </div>
+        </div>
+        <div class="bg-red-400 w-full h-1/2 p-5">
+            <div class="bg-cyan-200 size-full">
+            <p>{{ $pet }}</p>
+            <p>Age: {{ $pet }}</p>
+            <p>Species: {{ $pet }}</p>
+            <p>Breed: {{ $pet }}</p>
             </div>
         </div>
     </div>
+</section>
 @endsection

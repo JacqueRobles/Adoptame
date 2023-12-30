@@ -21,7 +21,7 @@ class PetController extends Controller
     public function index()
     {
         //
-        $pets = Pet::all();
+        $pets = Pet::all();  
         return view('pets.index', ['pets' => $pets]);   //compact('pets'));
     }
 
@@ -66,7 +66,8 @@ class PetController extends Controller
      */
     public function show(string $id)
     {
-        $pet = Pet::findOrFail($id);        
+        $pet = new Pet();
+        $pet->nickname = "canito";
         return view('pets.show', compact('pet'));
         
     }

@@ -26,6 +26,13 @@ Route::get('/', function () {
     return view('index', ['pets' => $pets]);
 });
 
+Route::controller(PetController::class)->group(function() {
+Route::get('/animals', 'index');
+Route::get('/pets/{id}', 'show');
+Route::post('/pets/{id}/update', 'update');
+Route::get('/pets/{id}/update', 'edit');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -40,10 +47,12 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'role:organization'])->group(function () {
     Route::patch('/adoptions/{id}', 'AdoptionsController@update')->name('adoption.update');   //update
     Route::put('/pets/{id}', [PetController::class, 'update'])->name('pet.update');   //update
+    Route::get('/pets/create', [PetController::class, 'create'])->name('pet.create');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::post('/organizations', 'OrganizationController@store');   //store
+    Route::post('/organizations', 'OrganizationController@store')->name('pet.update');   //store
 });
+
 
 require __DIR__.'/auth.php';
