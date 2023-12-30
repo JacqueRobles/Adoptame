@@ -19,7 +19,7 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 </head>
-<body>
+<body class= "dark:bg-gray-900">
     <div class="bg-teal-400 dark:bg-gray-900 min-w-screen min-h-screen h-screen flex flex-col">
      <header class="sticky top-0 inset-x-0 flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-white border-gray-200 dark:bg-gray-800 dark:border-gray-700 text-sm py-3 sm:py-3 dark:bg-clip-padding dark:backdrop-filter dark:backdrop-blur-sm dark:bg-opacity-20">  
         <nav class="relative max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8" aria-label="Global">

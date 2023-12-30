@@ -13,7 +13,7 @@ class PetController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('role:organization')->only(['create', 'store', 'edit', 'update']);
+       // $this->middleware('role:organization')->only(['create', 'store', 'edit', 'update']);
     }
     /**
      * Display a listing of the resource.
