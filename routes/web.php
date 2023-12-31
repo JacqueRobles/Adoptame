@@ -30,16 +30,16 @@ Route::get('/', function () {
 
 Route::controller(PetController::class)->group(function() {
     Route::get('/pets', 'index')->name('pet.index');
-    Route::get('/pets/{id}', 'show')->name('pet.show');
-    // Route::middleware('auth')->group(function() {
+    Route::middleware('auth')->group(function() {
         Route::get('/pets/create', 'create')->name('pet.create');             //organization
         Route::post('/pets/store', 'store')->name('pet.store');        //organization
-        Route::post('/pets/{id}/update', 'update')->name('pet.update');        //organization
         Route::get('/pets/{id}/update', 'edit')->name('pet.edit');             //organization
+        Route::post('/pets/{id}/update', 'update')->name('pet.update');        //organization
         Route::get('/pets/{id}/destroy', 'destroy')->name('pet.destroy');      //admin
-
-    // });
+    });
+    Route::get('/pets/{id}', 'show')->name('pet.show');
 });
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

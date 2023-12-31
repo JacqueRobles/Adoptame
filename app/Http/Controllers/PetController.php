@@ -25,6 +25,12 @@ class PetController extends Controller
         return view('pets.index', ['pets' => $pets]);   //compact('pets'));
     }
 
+    public function indexAdoption()
+    {
+        //
+        $pets = Pet::where('adopter', false);  
+        return view('pets.index', ['pets' => $pets]);   //compact('pets'));
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -67,9 +73,9 @@ class PetController extends Controller
      */
     public function show(string $id)
     {
-        // $pet = new Pet();
-        // $pet->nickname = "canito";
-        $pet = Pet::findOrFail($id);
+         $pet = new Pet();
+         $pet->nickname = "canito";
+        //$pet = Pet::findOrFail($id);
         return view('pets.show', compact('pet'));
         
     }

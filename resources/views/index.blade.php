@@ -37,7 +37,7 @@
                 <!-- Title -->
                 <div class="sm:w-1/2 xl:w-1/3 mx-auto text-center mb-6 md:mb-12">
                     <h2 class="text-xl font-semibold md:text-2xl md:leading-tight text-gray-800 dark:text-gray-200">
-                        ¡Patitas del Desierto, Brigada Animal, y mas organizaciones confían en Pet Club!
+                        ¡Patitas del Desierto, Brigada Animal, y mas organizaciones confían en Adoptame!
                     </h2>
                 </div>
                 <!-- End Title -->
@@ -45,7 +45,7 @@
                 <!-- Grid -->
                 <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-3 lg:gap-6">
                 <div class="p-4 md:p-7 bg-gray-100 rounded-lg dark:bg-slate-800">
-                    <img class="py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto text-gray-800 dark:text-gray-200" enable-background="new 0 0 2499 614" viewBox="0 0 2499 614" src="https://fundacionjulieta.cl/wp-content/uploads/2022/10/Logo-Final-Julieta.png"> </img>
+                    <img class=" items-center py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto text-gray-800 dark:text-gray-200" enable-background="new 0 0 2499 614" viewBox="0 0 2499 614" src="https://fundacionjulieta.cl/wp-content/uploads/2022/10/Logo-Final-Julieta.png"> </img>
                 </div>
             
                 <div class="p-4 md:p-7 bg-gray-100 rounded-lg dark:bg-slate-800">
@@ -76,8 +76,8 @@
                     <img class="py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto text-gray-800 dark:text-gray-200" enable-background="new 0 0 2499 614" viewBox="0 0 2499 614" src="https://fundacionarca.cl/wp-content/uploads/2020/05/Logo_eslogan_sinfondo.png"> </img>
                 </div>
             
-                <div class="p-4 md:p-7 bg-gray-100 rounded-lg dark:bg-slate-800">
-                    <img class="py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto text-gray-800 dark:text-gray-200" enable-background="new 0 0 2499 614" viewBox="0 0 2499 614" src="https://lirp.cdn-website.com/4fe36726/dms3rep/multi/opt/2432388-logo_largo-d3d94-7bec5d0b-1920w.png"> </img>
+                <div class="items-center justify-center p-4 md:p-7 bg-gray-100 rounded-lg dark:bg-slate-800">
+                    <img class=" items-center justify-center py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto text-gray-800 dark:text-gray-200" enable-background="new 0 0 2499 614" viewBox="0 0 2499 614" src="https://lirp.cdn-website.com/4fe36726/dms3rep/multi/opt/2432388-logo_largo-d3d94-7bec5d0b-1920w.png"> </img>
                 </div>
             
                 <div class="p-4 md:p-7 bg-gray-100 rounded-lg dark:bg-slate-800">

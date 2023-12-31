@@ -68,7 +68,7 @@ class User extends Authenticatable
 
     public function commune()
     {
-        return $this->belongsTo(Commune::class);
+        return $this->hasOne(Commune::class);
     }
 
 
