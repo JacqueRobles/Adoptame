@@ -32,6 +32,7 @@ class User extends Authenticatable
         'commune_id',
         'profile_photo_path',
         'web',
+    
         
     ];
 
@@ -72,7 +73,7 @@ class User extends Authenticatable
     }
 
 
-    public function pets()
+    public function pets()      //for organization
     {
         return $this->hasMany(Pet::class);
     }
@@ -84,13 +85,17 @@ class User extends Authenticatable
 
     public function headquarter()
     {
-        return $this->hasMany(Headquarter::class);
+        return $this->hasMany(Headquarter::class, 'organization_id');
     }
     
     public function income()
     {
-        return $this->hasMany(Income::class);
+        return $this->hasMany(Income::class, 'organization_id');
     }
 
+    public function petitions()
+    {
+        return $this->hasMany(Petition::class, 'user_id');
+    }
 
 }

@@ -46,5 +46,13 @@ class Pet extends Model
         return $this->morphMany(Image::class, 'imageable');
     }
 
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'adopter_id');
+    }
 
+    public function petitions()
+    {
+        return $this->hasMany(Petition::class);
+    }
 }
