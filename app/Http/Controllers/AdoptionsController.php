@@ -11,7 +11,7 @@ use App\Events\AdoptionsTableUpdated;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
-class AdopcionesController extends Controller
+class AdoptionsController extends Controller
 {
     use HasRoles;
     public function __construct()

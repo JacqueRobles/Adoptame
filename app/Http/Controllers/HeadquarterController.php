@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Headquarter;
 
-class HeadquearterController extends Controller
+class HeadquarterController extends Controller
 {
     public function __construct()
     {

@@ -9,6 +9,7 @@ use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\CommuneController;
 use App\Http\Controllers\HeadquarterController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PetitionController;
 use App\Models\Pet;
 
 
@@ -65,6 +66,36 @@ Route::controller(OrganizationController::class)->group(function() {
 
 });
 
+
+Route::controller(HeadquarterController::class)->group(function() {
+    Route::get('/headquarters', 'index')->name('headquarter.index');     //user role organization
+    Route::get('/headquarters/new', 'create')->name('headquarter.create');     //user role organization
+    Route::post('/headquarters/new', 'store')->name('headquarter.store');        //organization
+    Route::get('/headquarters/{id}/update', 'edit')->name('headquarter.edit');     //user role organization
+    Route::post('/headquarters/{id}/update', 'update')->name('headquarter.update');     //user role organization
+    Route::get('/headquarters/{id}/destroy', 'destroy')->name('headquarter.destroy');     //user role organization
+
+});
+
+Route::controller(AdoptionsController::class)->group(function() {
+    Route::get('/adoptions', 'index')->name('adoption.index');     //user role organization
+    Route::get('/adoptions/new', 'create')->name('adoption.create');     //user role organization
+    Route::post('/adoptions/new', 'store')->name('adoption.store');        //organization
+    Route::get('/adoptions/{id}/update', 'edit')->name('adoption.edit');     //user role organization
+    Route::post('/adoptions/{id}/update', 'update')->name('adoption.update');     //user role organization
+    Route::get('/adoptions/{id}/destroy', 'destroy')->name('adoption.destroy');     //user role organization
+
+});
+
+Route::controller(PetitionController::class)->group(function() {
+    Route::get('/petitions', 'index')->name('petition.index');     //user role organization
+    Route::get('/petitions/new', 'create')->name('petition.create');     //user role organization
+    Route::post('/petitions/new', 'store')->name('petition.store');        //organization
+    Route::get('/petitions/{id}/update', 'edit')->name('petition.edit');     //user role organization
+    Route::post('/petitions/{id}/update', 'update')->name('petition.update');     //user role organization
+    Route::get('/petitions/{id}/destroy', 'destroy')->name('petition.destroy');     //user role organization
+
+});
 // Route::middleware(['auth', 'role:organization'])->group(function () {
 //     Route::patch('/adoptions/{id}', 'AdoptionsController@update')->name('adoption.update');   //update
 //     Route::put('/pets/{id}', [PetController::class, 'update'])->name('pet.update');   //update
