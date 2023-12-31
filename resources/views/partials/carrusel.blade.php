@@ -47,7 +47,7 @@
         class="block w-full"
         alt="Wild Landscape" />  --}}
         <div class="block w-full">
-            @include('components.card', ['pet' => $pet])
+            @include('partials.card', ['pet' => $pet])
         </div>
     </div>
     @endforeach

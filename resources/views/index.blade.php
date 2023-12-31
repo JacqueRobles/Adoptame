@@ -29,7 +29,7 @@
                 @include('components.card', ['pet' => $pet])
             @endforeach
         @endsection --}}
-        @include('components.carrusel')
+        @include('partials.carrusel')
 
         <div class="mt-8 space-y-4">
           <!-- Clients -->

@@ -20,8 +20,15 @@ class PetController extends Controller
      */
     public function index()
     {
-        //
-        $pets = Pet::all();  
+        $pets= [
+        $pet = new Pet(),
+         $pet->nickname = "canito",
+         $pet->id= 1,
+         $pet = new Pet(),
+         $pet->nickname = "asdasd",
+            $pet->id= 2,
+        ];
+        // $pets = Pet::all();  
         return view('pets.index', ['pets' => $pets]);   //compact('pets'));
     }
 

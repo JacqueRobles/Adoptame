@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Petition;
+use App\Models\Pet;
 
 class PetitionController extends Controller
 {
@@ -19,9 +20,12 @@ class PetitionController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(string $id)
     {
-        return view('petitions.create');
+        $pet = new Pet();
+         $pet->nickname = "canito";
+        // $pet = Pet::findOrFail($id);
+        return view('petitions.create', compact('pet'));
     }
 
     /**

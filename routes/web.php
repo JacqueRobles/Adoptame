@@ -88,9 +88,9 @@ Route::controller(AdoptionsController::class)->group(function() {
 });
 
 Route::controller(PetitionController::class)->group(function() {
+    Route::get('/petitions/new/{id}', 'create')->name('petition.create');     //user role organization
     Route::get('/petitions', 'index')->name('petition.index');     //user role organization
-    Route::get('/petitions/new', 'create')->name('petition.create');     //user role organization
-    Route::post('/petitions/new', 'store')->name('petition.store');        //organization
+    Route::post('/petitions/new/{id}', 'store')->name('petition.store');        //organization
     Route::get('/petitions/{id}/update', 'edit')->name('petition.edit');     //user role organization
     Route::post('/petitions/{id}/update', 'update')->name('petition.update');     //user role organization
     Route::get('/petitions/{id}/destroy', 'destroy')->name('petition.destroy');     //user role organization

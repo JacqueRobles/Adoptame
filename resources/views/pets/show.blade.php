@@ -1,46 +1,47 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="flex justify-center items-center h-full text-black py-5">
-    <div class="w-5/6 bg-white h-full">
-        <div class="flex h-1/2">
-            <div class="w-1/3 bg-green-300 m-5">hello</div>
-            <div class="w-2/3 bg-purple-300 m-5">
-                <form action="/pets/2/update" method="POST">
-                    <input type="text" name="nickname" value="{{$pet->nickname}}"/>
-                </form>
-                </form>
+<section class="flex justify-center items-center min-h-full  text-black py-5">
+    <div class="w-5/6 min-h-full h-full bg-zinc-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 rounded-xl">
+        <div class="flex min-h-1/2 h-1/2">
+            <div class="w-1/3 m-5">
+              @if($pet->profilePhoto)
+              <img src="{{ asset($pet->profilePhoto->path) }}" alt="pet image" class="h-full w-auto rounded-md">
+              @else
+                  <!-- Display a default image or a message -->
+                  <img src="{{ asset('storage/images/pet-default.png') }}" alt="pet image" class="h-full w-auto rounded-md">
+              @endif            </div>
+            <div class="w-2/3 h-full m-5 text-white">
+                <div class="flex gap-5 max-w-full">
+                    <div class="flex gap-3">
+                        <p class="text-lg">Nombre:</p>
+                        <h1 class="text-lg font-bold text-gray-800 dark:text-white">{{ $pet->nickname}}</h1>
+                    </div>
+                    <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full font-medium border border-teal-500 text-teal-500 text-sm">{{$pet->type}}</span>
+                </div>  
+                <div class="flex justify-between text-justify gap-5">
+                    <div class="">
+                        <p>{{ $pet->feature }}</p>
+                    </div>
+                    <div class="h-full">
+                        @if ($pet->adoption == false)
+                        <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-teal-100 text-teal-800 dark:bg-teal-800/30 dark:text-teal-500">Adopted</span>
+                        @else
+                        <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-teal-100 text-teal-800 dark:bg-teal-800/30 dark:text-teal-500">Looking for a home</span>
+                        @endif
+                    </div>
+                </div>
+                <a type="button" href="{{route('petition.create', ['id' => $pet->id]) }}" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-500 text-white hover:bg-teal-600 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                Request adoption
+                </a>
             </div>
         </div>
-        <div class="bg-red-400 w-full h-1/2">
-            <p>{{ $pet }}</p>
-            <p>Age: {{ $pet }}</p>
-            <p>Species: {{ $pet }}</p>
-            <p>Breed: {{ $pet }}</p>
+        <div class="w-full min-h-1/2 h-1/2">
+            <div class="m-5 h-full flex-wrap text-white bg-slate-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 p-5">
+                <p class="font-medium">Biography: </p>
+                <p>{{ $pet->biography }}</p>
+            </div>
         </div>
-        <div>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                <div class="space-y-2">
-                  <img class="w-full h-auto object-cover" src="https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt="Image Description">
-                  <img class="w-full h-auto object-cover" src="https://images.unsplash.com/photo-1668906093328-99601a1aa584?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=986&q=80" alt="Image Description">
-                  <img class="w-full h-auto object-cover" src="https://images.unsplash.com/photo-1567016526105-22da7c13161a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80" alt="Image Description">
-                </div>
-                <div class="space-y-2">
-                  <img class="w-full h-auto object-cover" src="https://images.unsplash.com/photo-1668584054131-d5721c515211?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80" alt="Image Description">
-                  <img class="w-full h-auto object-cover" src="https://images.unsplash.com/photo-1664574654529-b60630f33fdb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80" alt="Image Description">
-                </div>
-                <div class="space-y-2">
-                  <img class="w-full h-auto object-cover" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt="Image Description">
-                  <img class="w-full h-auto object-cover" src="https://images.unsplash.com/photo-1586232702178-f044c5f4d4b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80" alt="Image Description">
-                  <img class="w-full h-auto object-cover" src="https://images.unsplash.com/photo-1542125387-c71274d94f0a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt="Image Description">
-                </div>
-                <div class="space-y-2">
-                  <img class="w-full h-auto object-cover" src="https://images.unsplash.com/photo-1668869713519-9bcbb0da7171?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80" alt="Image Description">
-                  <img class="w-full h-auto object-cover" src="https://images.unsplash.com/photo-1668584054035-f5ba7d426401?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3465&q=80" alt="Image Description">
-                </div>
-              </div>
     </div>
-    </div>
-    
 </section>
 @endsection

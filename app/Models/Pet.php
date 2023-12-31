@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use app\Models\Organization;
-use app\Models\Image;
-use app\Models\User as Person;
+use App\Models\Organization;
+use App\Models\Image;
+use App\Models\User as Person;
 use App\Models\Adoption;
 
 class Pet extends Model
