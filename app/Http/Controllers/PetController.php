@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Pet;
 use App\Models\Organization;
 use App\Models\User;
+use App\Models\Image;
 use Spatie\Permission\Middlewares\RoleMiddleware;
 
 
@@ -20,15 +21,7 @@ class PetController extends Controller
      */
     public function index()
     {
-        $pets= [
-        $pet = new Pet(),
-         $pet->nickname = "canito",
-         $pet->id= 1,
-         $pet = new Pet(),
-         $pet->nickname = "asdasd",
-            $pet->id= 2,
-        ];
-        // $pets = Pet::all();  
+        $pets = Pet::all();  
         return view('pets.index', ['pets' => $pets]);   //compact('pets'));
     }
 
@@ -57,30 +50,48 @@ class PetController extends Controller
             'type' => 'required',
             'biography' => 'required',
             'feature' => 'required',
-            'profile_photo_path' => 'required',
+            'profile_photo_path' => 'required|image',
+            'images.*' => 'image'
         ]);
-    
+        
         $pet = new Pet([
             'nickname' => $request->input('nickname'),
             'type' => $request->input('type'),
             'biography' => $request->input('biography'),
             'feature' => $request->input('feature'),
-            'profile_photo_path' => $request->input('profile_photo_path'),
             'organization_id' => auth()->id(),
         ]);
-        
         $pet->save();
-    
-        return redirect()->route('pet.index')
-            ->with('success','Pet created successfully.');
-    }
 
+        if($request->hasFile('profile_photo_path')) {
+            $file = $request->file('profile_photo_path');
+            $path = $file->store('images', 'public');
+    
+            $image = new Image;
+            $image->path = $path;
+            $pet->images()->save($image);
+        }
+
+        if($request->hasFile('images')) {
+            foreach($request->file('images') as $image) {
+                $path = $image->store('images', 'public');
+                $image = new Image;
+                $image->path = $path;
+                $pet->images()->save($image);
+            }
+        }
+
+        return redirect()->route('pet.index');
+
+    }
+    
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
          $pet = new Pet();
+         $pet->id = $id;
          $pet->nickname = "canito";
         //$pet = Pet::findOrFail($id);
         return view('pets.show', compact('pet'));
@@ -105,7 +116,7 @@ class PetController extends Controller
             'type' => 'required',
             'biography' => 'required',
             'feature' => 'required',
-            'profile_photo_path' => 'required',
+            'profile_photo_path' => 'required|image',
         ]);
 
         $pet = Pet::findOrFail($id);
@@ -113,9 +124,16 @@ class PetController extends Controller
         $pet->type = $request->input('type');
         $pet->biography = $request->input('biography');
         $pet->feature = $request->input('feature');
-        $pet->profile_photo_path = $request->input('profile_photo_path');
-
         $pet->save();
+
+        if($request->hasFile('profile_photo_path')) {
+            $file = $request->file('profile_photo_path');
+            $path = $file->store('images', 'public');
+    
+            $image = new Image;
+            $image->path = $path;
+            $pet->images()->save($image);
+        }
 
         return redirect()->route('pet.index')
             ->with('success', 'Pet updated successfully.');

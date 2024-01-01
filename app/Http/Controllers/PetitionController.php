@@ -22,9 +22,8 @@ class PetitionController extends Controller
      */
     public function create(string $id)
     {
-        $pet = new Pet();
-         $pet->nickname = "canito";
-        // $pet = Pet::findOrFail($id);
+        //$pet = Pet::findOrFail($id);
+        $pet = $id;
         return view('petitions.create', compact('pet'));
     }
 

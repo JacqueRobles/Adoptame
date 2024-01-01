@@ -31,13 +31,13 @@ Route::get('/', function () {
 
 Route::controller(PetController::class)->group(function() {
     Route::get('/pets', 'index')->name('pet.index');
-    Route::middleware('auth')->group(function() {
+    //Route::middleware('auth')->group(function() {
         Route::get('/pets/create', 'create')->name('pet.create');             //organization
         Route::post('/pets/store', 'store')->name('pet.store');        //organization
         Route::get('/pets/{id}/update', 'edit')->name('pet.edit');             //organization
         Route::post('/pets/{id}/update', 'update')->name('pet.update');        //organization
         Route::get('/pets/{id}/destroy', 'destroy')->name('pet.destroy');      //admin
-    });
+    //});
     Route::get('/pets/{id}', 'show')->name('pet.show');
 });
 
@@ -88,12 +88,12 @@ Route::controller(AdoptionsController::class)->group(function() {
 });
 
 Route::controller(PetitionController::class)->group(function() {
-    Route::get('/petitions/new/{id}', 'create')->name('petition.create');     //user role organization
     Route::get('/petitions', 'index')->name('petition.index');     //user role organization
-    Route::post('/petitions/new/{id}', 'store')->name('petition.store');        //organization
-    Route::get('/petitions/{id}/update', 'edit')->name('petition.edit');     //user role organization
-    Route::post('/petitions/{id}/update', 'update')->name('petition.update');     //user role organization
-    Route::get('/petitions/{id}/destroy', 'destroy')->name('petition.destroy');     //user role organization
+    Route::get('/pets/{id}/petitions/', 'create')->name('petition.create');     //user role organization
+    Route::post('/pets/{id}/petitions/', 'store')->name('petition.store');        //organization
+    Route::get('/pets/{id}/petitions/update', 'edit')->name('petition.edit');     //user role organization
+    Route::post('/pets/{id}/petitions/update', 'update')->name('petition.update');     //user role organization
+    Route::get('/pets/{id}/petitions/destroy', 'destroy')->name('petition.destroy');     //user role organization
 
 });
 // Route::middleware(['auth', 'role:organization'])->group(function () {
