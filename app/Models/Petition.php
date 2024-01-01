@@ -14,6 +14,7 @@ class Petition extends Model
         'user_id',
         'description',
         'status',
+        'email',
         'date'
 
     ];

@@ -35,6 +35,7 @@ class PetitionController extends Controller
             'pet_id' => 'required',
             'description' => 'required',
             'status' => 'required',
+            'email' => 'required',
         ]);
     
         $petition = new Petition([
@@ -42,6 +43,7 @@ class PetitionController extends Controller
             'user_id' =>auth()->user()->id,
             'description' => $request->input('description'),
             'status' => $request->input('status'),
+            'email' => $request->input('email'),
             'date' =>today(),
         ]);
         $petition->save();

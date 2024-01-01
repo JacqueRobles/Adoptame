@@ -17,7 +17,8 @@ return new class extends Migration
             $table->foreignId('pet_id')->constrained('pets');
             $table->foreignId('user_id')->constrained('users');
             $table->string('description')->nullable();
-            $table->boolean('status')->nullable()->default('null');
+            $table->boolean('status')->nullable()->default(null);
+            $table->string('email')->nullable();
             $table->date('date');
         });
     }

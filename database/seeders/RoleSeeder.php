@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\PermissionRegistrar;
 
 class RoleSeeder extends Seeder
 {
@@ -14,7 +15,7 @@ class RoleSeeder extends Seeder
     */
     public function run()
     {
-        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissons();
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         $role1 = Role::create(['name' => 'admin']);
         $role2 = Role::create(['name' => 'organization']);

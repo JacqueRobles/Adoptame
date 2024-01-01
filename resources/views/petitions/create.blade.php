@@ -15,9 +15,10 @@
         </p>
       </div>
       
-      <form action="/pets/{{$pet}}/petitions/" method="POST">
+      <form method="POST" action="/pets/{{$pet->id}}/petitions" >
+        @csrf
         <!-- Grid -->
-        <input type="hidden" name="pet_id" value="{{ $pet }}">
+        <input type="hidden" name="pet_id" value="{{ $pet->id}}">
 
         <div class="grid sm:grid-cols-12 gap-2 sm:gap-6">
           <div class="sm:col-span-3">
@@ -31,8 +32,10 @@
             <div class="flex items-center gap-5">
               @if (optional($image = $pet->images->first())->path)
                 <img class="w-20 h-20 rounded-full object-cover" src="{{Storage::url($image->path)}}" alt="avatar">
-              @endif
-              
+              @else
+                <!-- Display a default image or a message -->
+                <img src="{{ asset('storage/images/pet-default.png') }}" alt="pet image" class="h-20 w-auto rounded-md">
+              @endif               
             </div>
           </div>
           <!-- End Col -->
@@ -47,7 +50,7 @@
           <!-- End Col -->
   
           <div class="sm:col-span-9">
-            <input id="af-account-email" type="email" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="maria@site.com">
+            <input id="af-account-email" type="email" name="email" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="maria@site.com">
           </div>
           
   
@@ -62,7 +65,7 @@
           <!-- End Col -->
   
           <div class="sm:col-span-9">
-            <textarea id="af-account-bio" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" rows="6" placeholder="Escribe un mensaje para la organizacion..."></textarea>
+            <textarea id="af-account-bio" name="description" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" rows="6" placeholder="Escribe un mensaje para la organizacion..."></textarea>
           </div>
           <!-- End Col -->
         </div>
@@ -73,7 +76,7 @@
             Cancelar
           </a>
           
-          <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+          <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
             Guardar
           </button>
         </div>

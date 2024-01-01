@@ -9,9 +9,9 @@
             <br> 
             {{-- @if (User::hasRole('organization')) --}}
             
-            <a class="cursor-pointer py-3 px-4 w-2/6 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-violet-600 text-white hover:bg-violet-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="{{ route('pet.create') }}">
+            {{-- <a class="cursor-pointer py-3 px-4 w-2/6 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-violet-600 text-white hover:bg-violet-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="{{ route('pet.create') }}">
                 agregar mascota c:
-            </a>
+            </a> --}}
          
             @auth
             <a class="cursor-pointer mt-5 py-3 px-4 w-1/6 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-violet-600 text-white hover:bg-violet-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="{{ route('pet.create') }}">
