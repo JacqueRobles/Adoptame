@@ -90,10 +90,8 @@ class PetController extends Controller
      */
     public function show(string $id)
     {
-         $pet = new Pet();
-         $pet->id = $id;
-         $pet->nickname = "canito";
-        //$pet = Pet::findOrFail($id);
+        $pet = Pet::findOrFail($id);
+        $images = $pet->images;
         return view('pets.show', compact('pet'));
         
     }

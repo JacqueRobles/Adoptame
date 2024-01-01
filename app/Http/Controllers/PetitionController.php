@@ -22,8 +22,7 @@ class PetitionController extends Controller
      */
     public function create(string $id)
     {
-        //$pet = Pet::findOrFail($id);
-        $pet = $id;
+        $pet = Pet::findOrFail($id);
         return view('petitions.create', compact('pet'));
     }
 

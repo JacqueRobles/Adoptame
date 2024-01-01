@@ -23,14 +23,15 @@
           <div class="sm:col-span-3">
             <label class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
               Foto mascota
-              {{$pet}}
             </label>
           </div>
           <!-- End Col -->
   
           <div class="sm:col-span-9">
             <div class="flex items-center gap-5">
-              <img class="inline-block h-16 w-16 rounded-full ring-2 ring-white dark:ring-gray-800" src="../assets/img/160x160/img1.jpg" alt="Image Description">
+              @if (optional($image = $pet->images->first())->path)
+                <img class="w-20 h-20 rounded-full object-cover" src="{{Storage::url($image->path)}}" alt="avatar">
+              @endif
               
             </div>
           </div>

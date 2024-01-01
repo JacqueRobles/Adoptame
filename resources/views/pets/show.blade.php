@@ -5,8 +5,8 @@
     <div class="w-5/6 min-h-full h-full bg-zinc-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 rounded-xl">
         <div class="flex min-h-1/2 h-1/2">
             <div class="w-1/3 m-5">
-                @if(optional($pet->profilePhoto)->path)
-                    <img src="{{asset($pet->profilePhoto->path)}}" alt="pet image" class="h-full w-auto rounded-md">
+                @if(optional($image = $pet->images->skip(1)->first())->path)
+                    <img src="{{ Storage::url($image->path) }}" alt="pet image" class="h-full w-auto rounded-md">
                 @else
                     <!-- Display a default image or a message -->
                     <img src="{{ asset('storage/images/pet-default.png') }}" alt="pet image" class="h-full w-auto rounded-md">

@@ -41,7 +41,7 @@ class Pet extends Model
         return $this->hasOne(Adoption::class);
     }
 
-    public function image()
+    public function images()
     {
         return $this->morphMany(Image::class, 'imageable');
     }

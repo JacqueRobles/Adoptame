@@ -7,7 +7,9 @@
           
       <a class="group sm:flex rounded-xl dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="{{route('pet.show', ['id' => $pet->id]) }}">
           <div class="flex-shrink-0 relative rounded-xl overflow-hidden w-full h-[200px] sm:w-[250px] sm:h-[350px]">
-              <img class="w-full h-full absolute top-0 start-0 object-cover" src="{{ $pet->image->path }}" alt="Image Description">
+              @if($image = $pet->images->first())
+                  <img src="{{ Storage::url($image->path) }}" alt="Pet Image">
+              @endif
             </div>
             
             <div class="grow">
@@ -28,11 +30,11 @@
                 <!-- Avatar -->
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <img class="h-[2.875rem] w-[2.875rem] rounded-full" src="{{ $pet->user->profile_photo_path }}" alt="Image Description">
+                        <img class="h-[2.875rem] w-[2.875rem] rounded-full" src="https://cdn.discordapp.com/attachments/1125559005943697469/1179465142891720724/IMG-20231129-WA0036.jpg?ex=6579e183&is=65676c83&hm=c1481ff8b3906ae234d8bc7d822e514df96900c506dbe9576415590ec866c2d6&" alt="Image Description">
                     </div>
                     <div class="ms-2.5 sm:ms-4">
                   <h4 class="font-semibold text-gray-800 dark:text-gray-200">
-                    {{$pet->user->name}}
+                    {{$pet->organization->name}}
                   </h4>
                   <p class="text-xs text-gray-500">
                     Feb 15, 2021

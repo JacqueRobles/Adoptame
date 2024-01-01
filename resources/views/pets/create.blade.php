@@ -42,8 +42,19 @@
                 </p>
               </div>
               
-              <form action="{{route('pet.store')}}" method="POST" enctype="multipart/form-data">
+              <form method="POST" action="{{route('pet.store')}}" enctype="multipart/form-data">
+                @csrf
                 <!-- Grid -->
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <strong>Whoops!</strong> Hubo algunos problemas con los datos ingresados.<br><br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li class="text-red-500">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 {{-- <input type="hidden" name="organization_id" value="{{ $id }}"> --}}
         
                 <div class="grid sm:grid-cols-12 gap-2 sm:gap-6">
@@ -80,12 +91,13 @@
                   {{-- end col --}}
                   <div class="sm:col-span-9">
                     <div class="sm:flex">
-                      <input id="af-account-full-name" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Maria">
+                      <input id="af-account-full-name" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Firulais"
+                      name="nickname">
                     </div>
                   </div>
                   <!-- End Col -->
 
-                    <div class="space-y-2">
+                    {{-- <div class="space-y-2">
                         <label for="af-submit-app-category" class="inline-block text-sm font-medium text-gray-800 mt-2.5 dark:text-gray-200">
                             Organizacion
                           </label>
@@ -94,7 +106,7 @@
                             <option value="{{$organization->id}}">{{$organization->name}}</option>
                         @endforeach
                         </select>
-                    </div>
+                    </div> --}}
                     {{-- ???? como ????? --}}
                 {{-- end col --}}
                   <div class="space-y-2">
@@ -102,9 +114,8 @@
                       Categoria         
                     </label>
         
-                    <select id="af-submit-app-category" class="py-2 px-3 pe-9 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
-                      <option selected>Select a category</option>
-                      <option>Perro</option>
+                    <select id="af-submit-app-category" class="py-2 px-3 pe-9 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" name="type">
+                      <option selected  >Perro</option>
                       <option>Gato</option>
                       <option>Ave</option>
                       <option>Roedor</option>
@@ -122,7 +133,7 @@
                   {{-- end col --}}
                   <div class="sm:col-span-9">
                     <div class="sm:flex">
-                      <input id="af-account-full-name" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Maria">
+                      <input id="af-account-full-name" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Maria" name="feature">
                     </div>
                   </div>
                   {{-- end col--}}
@@ -138,7 +149,7 @@
                   <!-- End Col -->
           
                   <div class="sm:col-span-9">
-                    <textarea id="af-account-bio" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" rows="6" placeholder="Escribe un mensaje para la organizacion..."></textarea>
+                    <textarea id="af-account-bio" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" rows="6" placeholder="Escribe un mensaje para la organizacion..." name="biography"></textarea>
                   </div>
                   <!-- End Col -->
 
@@ -158,7 +169,7 @@
                       file:bg-transparent file:border-0
                       file:bg-gray-100 file:me-4
                       file:py-2 file:px-3
-                      dark:file:bg-gray-700 dark:file:text-gray-400">
+                      dark:file:bg-gray-700 dark:file:text-gray-400" multiple>
                   </div>
                   {{-- end col --}}
                 </div>
@@ -169,7 +180,7 @@
                     Cancelar
                   </a>
                   
-                  <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                  <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                     Guardar
                   </button>
                 </div>
