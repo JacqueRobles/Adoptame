@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Petition;
 use App\Models\Pet;
+use App\Models\User;
 
 class PetitionController extends Controller
 {
@@ -13,7 +14,18 @@ class PetitionController extends Controller
      */
     public function index()
     {
-        $petitions = Petition::all();
+        // get the currently authenticated user's ID
+        $id = auth()->user()->id;
+        $user = User::findOrFail($id);
+        if($user->getRoleNames()->isEmpty()){
+            $petitions = Petition::where('user_id', $id)->paginate(5);
+        }elseif($user->hasRole('organization')){
+            $petitions = Petition::whereHas('pet', function($q) use ($id){
+                $q->where('organization_id', $id);
+            })->paginate(5);
+        }else{
+            $petitions = Petition::paginate(5);
+        }
         return view('petitions.index', compact('petitions'));
     }
 
@@ -48,7 +60,7 @@ class PetitionController extends Controller
         ]);
         $petition->save();
     
-        return redirect()->route('petitions.index');
+        return redirect()->route('petition.index');
     }
 
     /**
@@ -100,4 +112,16 @@ class PetitionController extends Controller
         $petition->delete();
         return redirect()->route('petitions.index')->with('success', 'Petition deleted successfully');
     }
+
+public function confirm(string $id)
+    {
+        $petition = Petition::findOrFail($id);
+        $petition->status = 'confirmed';
+        $petition->pet->adoption = true;
+        $petition->pet->adopter_id = $petition->user_id;
+        $petition->save();
+        $petition->pet->save();
+        return redirect()->route('petition.index')->with('success', 'Petition confirmed successfully');
+    }
+    
 }
