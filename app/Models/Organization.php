@@ -22,7 +22,7 @@ class Organization extends Authenticatable
 
     public function commune()
     {
-        return $this->belongsTo(Commune::class);
+        return $this->hasOne(Commune::class, 'organization_id');
     }
 
 
