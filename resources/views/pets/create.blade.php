@@ -1,3 +1,4 @@
+
         @extends('layouts.app')
 
         @section('content')
@@ -44,7 +45,7 @@
                       <img id="preview" class="inline-block h-16 w-16 rounded-full ring-2 ring-white dark:ring-gray-800" src="../assets/img/160x160/img1.jpg" alt="Image Description">
                       <div class="flex gap-x-2">
                         <div>
-                            <input type="file" id="profile-photo" name="profile_photo_path" style="display: none;" onchange="previewFile()" />
+                          <input type="file" id="profile-photo" name="profile_photo_path" style="display: none;"  onchange="previewFile()" />
 
                           <button type="button" onclick="document.getElementById('profile-photo').click();" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                             <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
