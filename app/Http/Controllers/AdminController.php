@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Commune;
 
 class AdminController extends Controller
 {
@@ -71,9 +72,15 @@ class AdminController extends Controller
 
     public function updateUser(Request $request, string $id)
     {
+        $request->validate([
+            'commune_name' => 'required',
+        ]);
         $user = User::find($id);
         $user->assignRole('organization');
+        $commune_name = $request->input('commune_name');
+        $commune = Commune::firstOrCreate(['commune_name' => $commune_name]);
+        $user->commune()->associate($commune);
         $user->save();
-        return redirect()->route('admin.manage-users');
+        return redirect()->route('admin.show_users');
     }
 }
