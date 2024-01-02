@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="flex justify-center items-center min-h-full  text-black py-5">
-    <div class="w-5/6 min-h-full h-full bg-zinc-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 rounded-xl">
+<section class="flex flex-col justify-center items-center min-h-full  text-black py-5">
+    <div class="w-5/6 min-h-full h-full bg-zinc-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 rounded-xl mb-10">
         <div class="flex min-h-1/2 h-1/2">
             <div class="w-1/3 m-5">
-                @if(optional($image = $pet->images->first())->path)
+                @if(optional($image = $pet->profilePhoto)->path)
                     <img src="{{ Storage::url($image->path) }}" alt="pet image" class="h-full w-auto rounded-md">
                 @else
                     <!-- Display a default image or a message -->
@@ -26,9 +26,9 @@
                     </div>
                     <div class="h-full">
                         @if ($pet->adoption == false)
-                        <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-teal-100 text-teal-800 dark:bg-teal-800/30 dark:text-teal-500">Adopted</span>
-                        @else
                         <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-teal-100 text-teal-800 dark:bg-teal-800/30 dark:text-teal-500">Looking for a home</span>
+                        @else
+                        <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-teal-100 text-teal-800 dark:bg-teal-800/30 dark:text-teal-500">Adopted</span>
                         @endif
                     </div>
                 </div>
@@ -42,6 +42,29 @@
                 <p class="font-medium">Biography: </p>
                 <p>{{ $pet->biography }}</p>
             </div>
+        </div>
+    </div>
+    <div class="h-full w-5/6">
+        <h1 class="font-medium text-xl text-white mb-3">Galeria</h1>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            @php
+                $count = 0;
+            @endphp
+            @foreach ($pet->images as $image)
+                @if ($count % 4 == 0 || $count % 4 == 2)
+                    <div class="space-y-2">
+                @endif
+
+                <x-image-component :src="$image->path" />
+
+                @if ($count % 4 == 1 || $count % 4 == 3 || $loop->last)
+                    </div>
+                @endif
+
+                @php
+                    $count++;
+                @endphp
+            @endforeach
         </div>
     </div>
 </section>
