@@ -1,11 +1,11 @@
 <!-- Card Blog -->
-<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto mt-3 border border-1">
+<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto mt-3">
     <!-- Grid -->
     <div class="grid lg:grid-cols-2 gap-6">
     <!-- Card -->
     @foreach ($pets as $pet)
           
-      <a class="group sm:flex rounded-xl dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="{{route('pet.show', ['id' => $pet->id]) }}">
+      <a class="bg-slate-800 p-5 group sm:flex rounded-xl dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 text-black" href="{{route('pet.show', ['id' => $pet->id]) }}">
           <div class="items-center flex-shrink-0 relative rounded-xl overflow-hidden w-full h-[200px] sm:w-[250px] sm:h-[350px]">
               @if($image = $pet->images->first())
                   <img src="{{ Storage::url($image->path) }}" alt="Pet Image">
@@ -22,7 +22,7 @@
                     <h3 class="text-lg sm:text-2xl font-semibold text-gray-800 group-hover:text-blue-600 dark:text-gray-300 dark:group-hover:text-white">
                         {{ $pet->nickname }}
                     </h3>
-                    <p class="mt-2 text-gray-600 dark:text-gray-400">
+                    <p class="mt-2 text-gray-600 dark:text-gray-400 text-wrap">
                         {{ $pet->biography }}
                     </p>
                     
