@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\Image;
 
 use App\Models\Adoption;
 use App\Models\Pet;
@@ -56,6 +57,10 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function profilePhoto()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
     public function adoptedPets()
     {
         return $this->hasMany(Pet::class, 'adopter_id');
@@ -69,7 +74,7 @@ class User extends Authenticatable
 
     public function commune()
     {
-        return $this->hasOne(Commune::class);
+        return $this->belongsTo(Commune::class, 'commune_id');
     }
 
 
