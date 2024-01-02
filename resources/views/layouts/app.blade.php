@@ -44,10 +44,12 @@
                         {{-- <a class="font-medium text-gray-500 hover:text-gray-400 sm:py-6 dark:text-gray-400 dark:hover:text-gray-500" href="/admin/news">News</a>
                         <a class="font-medium text-gray-500 hover:text-gray-400 sm:py-6 dark:text-gray-400 dark:hover:text-gray-500" href="/animals">Animals</a> --}}
                         <a class="font-medium text-gray-500 hover:text-gray-400 sm:py-6 dark:text-gray-400 dark:hover:text-gray-500" href="{{ route('organization.index') }}">Organizaciones</a>
-                    
                         @endauth
                         @role('admin')
                             <a class="font-medium text-gray-500 hover:text-gray-400 sm:py-6 dark:text-gray-400 dark:hover:text-gray-500" href="{{ route('admin.show_users') }}">Manejar usuarios</a>
+                        @endrole
+                        @role('organization')
+                            <a class="font-medium text-gray-500 hover:text-gray-400 sm:py-6 dark:text-gray-400 dark:hover:text-gray-500" href="{{route('petition.index')}}">Solicitudes</a>
                         @endrole
                     </div>
                     @guest
