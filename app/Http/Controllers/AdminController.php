@@ -72,7 +72,7 @@ class AdminController extends Controller
     public function updateUser(Request $request, string $id)
     {
         $user = User::find($id);
-        $user->role = $request->role;
+        $user->assignRole('organization');
         $user->save();
         return redirect()->route('admin.manage-users');
     }
