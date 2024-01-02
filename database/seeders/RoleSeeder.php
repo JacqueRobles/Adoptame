@@ -28,6 +28,8 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.users.create'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'admin.users.store'])->syncRoles([$role1, $role2]);
         
+        Permission::create(['name' => 'pets.create'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'pets.update'])->syncRoles([$role1, $role2]); 
 
     }
 
