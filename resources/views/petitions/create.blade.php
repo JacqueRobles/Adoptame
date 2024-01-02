@@ -18,8 +18,20 @@
       <form method="POST" action="/pets/{{$pet->id}}/petitions" >
         @csrf
         <!-- Grid -->
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <p class="text-red-700" ><strong>Whoops!</strong> Hubo algunos problemas con los datos ingresados.<br><br></p>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li class="text-red-500">{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+        <!-- Grid -->
         <input type="hidden" name="pet_id" value="{{ $pet->id}}">
-
+        <input type="hidden" name="status" value="Pendiente">
+ 
         <div class="grid sm:grid-cols-12 gap-2 sm:gap-6">
           <div class="sm:col-span-3">
             <label class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">

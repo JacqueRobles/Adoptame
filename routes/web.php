@@ -6,6 +6,7 @@ use App\Http\Controllers\AdoptionsController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommuneController;
 use App\Http\Controllers\HeadquarterController;
 use App\Http\Controllers\HomeController;
@@ -54,7 +55,8 @@ Route::middleware('auth')->group(function () {
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::post('/organizations', 'OrganizationController@store')->name('pet.update');   //store
+    Route::get('/admin/show_users', [AdminController::class, 'manageUsers'])->name('admin.show_users');
+    Route::put('/admin/show_users/{id}', [AdminController::class, 'updateUser'])->name('admin.updateUserStatus');
 });
 Route::controller(OrganizationController::class)->group(function() {
     Route::get('/organizations', 'index')->name('organization.index');     //user role organization

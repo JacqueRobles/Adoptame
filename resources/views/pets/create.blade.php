@@ -1,30 +1,3 @@
-{{-- @extends('layouts.app')
-
-@section('content')
-
-    <h6> Ingresar datos de mascota</h6>
-    <form method="POST" action="{{ route('pet.store') }}">
-        @csrf
-
-        <select class="col-6 form-select" name="organization_id">
-            @foreach ($organizations as $organization)
-                <option value="{{$organization->id}}">{{$organization->name}}</option>
-            @endforeach
-        </select>
-
-
-        <br><br><br><br>
-
-
-        <input type="text" class="col-6" name="nickname" placeholder="Sobrenombre mascota en adopción"
-            autocomplete="off">
-
-        <br><br>
-
-        <select class="col-6 form-select" name="type">
-            <option value="Perro">Perro</option>
-            <option value="Gato">Gato</option>
-        </select> --}}
         @extends('layouts.app')
 
         @section('content')
@@ -47,7 +20,7 @@
                 <!-- Grid -->
                 @if ($errors->any())
                 <div class="alert alert-danger">
-                    <strong>Whoops!</strong> Hubo algunos problemas con los datos ingresados.<br><br>
+                    <p class="text-red-700" ><strong>Whoops!</strong> Hubo algunos problemas con los datos ingresados.<br><br></p>
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li class="text-red-500">{{ $error }}</li>
@@ -68,10 +41,10 @@
 
                   <div class="sm:col-span-9">
                     <div class="flex items-center gap-5">
-                      <img class="inline-block h-16 w-16 rounded-full ring-2 ring-white dark:ring-gray-800" src="../assets/img/160x160/img1.jpg" alt="Image Description">
+                      <img id="preview" class="inline-block h-16 w-16 rounded-full ring-2 ring-white dark:ring-gray-800" src="../assets/img/160x160/img1.jpg" alt="Image Description">
                       <div class="flex gap-x-2">
                         <div>
-                            <input type="file" id="profile-photo" name="profile_photo_path" style="display: none;" />
+                            <input type="file" id="profile-photo" name="profile_photo_path" style="display: none;" onchange="previewFile()" />
 
                           <button type="button" onclick="document.getElementById('profile-photo').click();" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                             <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
@@ -81,6 +54,24 @@
                       </div>
                     </div>
                   </div>
+
+                  <script>
+                    function previewFile() {
+                        var preview = document.getElementById('preview');
+                        var file    = document.getElementById('profile-photo').files[0];
+                        var reader  = new FileReader();
+                    
+                        reader.onloadend = function () {
+                            preview.src = reader.result;
+                        }
+                    
+                        if (file) {
+                            reader.readAsDataURL(file);
+                        } else {
+                            preview.src = "";
+                        }
+                    }
+                    </script>
                   <!-- End Col -->
           
                   <div class="sm:col-span-3">
@@ -137,8 +128,8 @@
                   {{-- end col --}}
                   <div class="sm:col-span-9">
                     <div class="sm:flex">
-                      <input id="af-account-full-name" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Firulais"
-                      name="nickname">
+                      <input id="af-account-full-name" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Estatura pequeña"
+                      name="feature">
                     </div>
                   </div>
                   <!-- End Col -->
