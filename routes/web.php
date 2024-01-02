@@ -32,13 +32,13 @@ Route::get('/', function () {
 
 Route::controller(PetController::class)->group(function() {
     Route::get('/pets', 'index')->name('pet.index');
-    //Route::middleware('auth')->group(function() {
+    Route::middleware(['auth', 'role:organization|admin'])->group(function() {
         Route::get('/pets/create', 'create')->name('pet.create');             //organization
         Route::post('/pets/store', 'store')->name('pet.store');        //organization
         Route::get('/pets/{id}/update', 'edit')->name('pet.edit');             //organization
         Route::post('/pets/{id}/update', 'update')->name('pet.update');        //organization
         Route::get('/pets/{id}/destroy', 'destroy')->name('pet.destroy');      //admin
-    //});
+    });
     Route::get('/pets/{id}', 'show')->name('pet.show');
 });
 
@@ -65,6 +65,7 @@ Route::controller(OrganizationController::class)->group(function() {
     Route::get('/organizations/{id}/update', 'edit')->name('organization.edit');     //user role organization
     Route::post('/organizations/{id}/update', 'update')->name('organization.update');     //user role organization
     Route::get('/organizations/{id}/destroy', 'destroy')->name('organization.destroy');     //user role organization
+    Route::get('/organizations/{id}', 'show')->name('organization.show');     //user role organization
 
 });
 
@@ -91,6 +92,8 @@ Route::controller(AdoptionsController::class)->group(function() {
 
 Route::controller(PetitionController::class)->group(function() {
     Route::get('/petitions', 'index')->name('petition.index');     //user role organization
+    Route::get('/petitions/{id}', 'show')->name('petition.show');     //user role organization
+    Route::get('/petitions/{id}/confirm', 'confirm')->name('petition.confirm');     //user role organization
     Route::get('/pets/{id}/petitions', 'create')->name('petition.create');     //user role organization
     Route::post('/pets/{id}/petitions', 'store')->name('petition.store');        //organization
     Route::get('/pets/{id}/petitions/update', 'edit')->name('petition.edit');     //user role organization
