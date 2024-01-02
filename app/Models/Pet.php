@@ -32,7 +32,7 @@ class Pet extends Model
 
     public function profilePhoto()
     {
-        return $this->morphMany(Image::class, 'imageable');
+        return $this->morphOne(Image::class, 'imageable');
     }
 
 
