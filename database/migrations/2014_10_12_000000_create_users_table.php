@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->foreignId('commune_id')->nullable()->constrained('commune')->onDelete('set null');
+            $table->foreignId('commune_id')->nullable()->constrained('communes')->onDelete('set null');
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
